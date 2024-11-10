@@ -119,9 +119,20 @@ test('Probar componente de Alertas', async ({ page }) => {
   await page.locator('#promtButton').click();
   await expect(page.locator('#confirmResult')).toContainText('You selected Ok');
   await expect(page.locator('#promptResult')).toContainText('You entered pruba Alertas');
-  await page.screenshot({path: 'Evidencias/evidenciaAlertas.png', fullPage:true});
+  await page.screenshot({path: 'Evidencias/evidenciaAlertas2.png', fullPage:true});
 
 });
-test('Probar componente de Botones', async ({ page }) => {
+
+
+test('test', async ({ page }) => {
+  await page.goto('https://demoqa.com/');
+  await page.locator('path').first().click();
+  await page.locator('li').filter({ hasText: 'Buttons' }).click();
+  await page.getByRole('button', { name: 'Double Click Me' }).dblclick();
+  await page.getByRole('button', { name: 'Right Click Me' }).click({
+    button: 'right'
+  });
+  await page.getByRole('button', { name: 'Click Me', exact: true }).click();
+  await expect(page.locator('#doubleClickMessage')).toContainText('You have done a double click');
   
 });
